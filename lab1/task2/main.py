@@ -36,28 +36,6 @@ class Formula:
         return f"{self.old_value} {pointer} {self.new_value}" 
     
 
-@dataclass
-class Substitution:
-    index: int
-    formula: Formula
-
-    @property
-    def old_value(self) -> str:
-        return self.formula.old_value
-    
-    @property
-    def new_value(self)-> str:
-        return self.formula.new_value
-    
-    @property
-    def is_final(self) -> bool:
-        return self.formula.is_final
-    
-
-    def __str__(self) -> str: 
-        return str(self.formula)
-
-
 class Scheme:
     def __init__(self) -> None:
         self._scheme: list[Formula] = list()
@@ -70,7 +48,8 @@ class Scheme:
 
 
     def delete_formula(self, formula_to_delete: Formula) -> None:
-        self._scheme.remove(formula_to_delete)
+        if formula_to_delete in self._scheme:
+            self._scheme.remove(formula_to_delete)
 
 
     def clear_scheme(self) -> None:
@@ -82,11 +61,11 @@ class Scheme:
         return self._scheme
     
 
-    def get_substituiting_value(self, tape: str) -> Substitution | None:
+    def get_substituiting_value(self, tape: str) -> Formula | None:
         for formula in self._scheme:
             index = tape.find(formula.old_value)
             if index != -1:
-                return Substitution(index, formula)
+                return formula
         return None
 
 
@@ -108,7 +87,7 @@ class Tape:
         self._tape = EMPTY_SYMBOL + tape
 
 
-    def do_substitution(self, substitution: Substitution | None) -> None:
+    def do_substitution(self, substitution: Formula | None) -> None:
         if not substitution: return
         self._tape = self._tape.replace(substitution.old_value, substitution.new_value, 1)
 
@@ -147,13 +126,13 @@ class MarkovAlgorithm:
         raise RuntimeError("Превышен лимит операций")
 
 
-    def step(self) -> tuple[Substitution | None, bool]:
+    def step(self) -> tuple[Formula | None, bool]:
         if self.step_counter > MAX_ITERATIONS:
             self.tape.clear()
             raise RuntimeError("Превышен лимит операций")
 
         self.step_counter += 1
-        substitution: Substitution | None = self.scheme.get_substituiting_value(self.tape.tape)
+        substitution: Formula | None = self.scheme.get_substituiting_value(self.tape.tape)
 
         self.tape.do_substitution(substitution)
 
@@ -163,8 +142,6 @@ class MarkovAlgorithm:
             return substitution, IS_FINAL
         
         return substitution, not IS_FINAL
-
-
 
 
     def set_alphabet(self, alphabet: str) -> None:
