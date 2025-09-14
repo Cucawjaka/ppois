@@ -213,6 +213,7 @@ class MarkovAlgorithmCLI:
 
     def output_result(self) -> None:
         result_tape, step_counter = self.ma.run()
+        result_tape = result_tape.replace(EMPTY_SYMBOL, '')
         print(f"{result_tape}, количество итерация {step_counter}")
 
 
@@ -223,7 +224,7 @@ class MarkovAlgorithmCLI:
 
     def output_tape(self) -> None:
         tape: str = self.ma.get_tape()
-        tape = tape.replace('_', '')
+        tape = tape.replace(EMPTY_SYMBOL, '')
         print(tape)
 
 

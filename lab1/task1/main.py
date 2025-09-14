@@ -66,6 +66,11 @@ class TapeHead:
     @property
     def tape(self) -> str:
         return ''.join(self._tape[1:-1])
+    
+
+    @property
+    def position(self) -> int:
+        return self._position
 
 
 class StateTransitionTable:
@@ -89,10 +94,14 @@ class StateTransitionTable:
         
 
     def delete_state(self, state_name: str) -> None:
+        if state_name not in self._table:
+            raise ValueError("Состояния с именем {state_name} не найдено")
         self._table.pop(state_name, None)
 
 
     def set_state(self, state_name: str) -> None:
+        if state_name not in self._table:
+            raise ValueError("Состояния с именем {state_name} не найдено")
         self._current_state = state_name
 
 
@@ -110,11 +119,10 @@ class StateTransitionTable:
         if self._current_state == "":
             raise RuntimeError("Состояние не установлено")
         try:
-            return self._table[self._current_state][letter] #type: ignor
+            return self._table[self._current_state][letter] 
         except KeyError:
             raise RuntimeError(f"Нет перехода для состояния {self._current_state} и символа {letter}")
         
-
 
 class TuringMachine:
     """Машина"""
@@ -126,6 +134,7 @@ class TuringMachine:
         self._alphabet: str = ""
         self.tape_head = tape_head if tape_head else TapeHead()
         self.state_table = state_table if state_table else StateTransitionTable()
+        self.step_counter = 0
 
 
     def _do_transition(self, transition: Transition):
@@ -135,10 +144,10 @@ class TuringMachine:
 
 
     def run(self) -> str:
-        counter: int = 0
+        self.step_counter = 0
 
-        while counter < MAX_ITERATIONS:
-            counter += 1
+        while self.step_counter < MAX_ITERATIONS:
+            self.step_counter += 1
             current_letter = self.tape_head.read()
             
             transition = self.state_table.get_current_transition(current_letter)
@@ -146,7 +155,7 @@ class TuringMachine:
             if transition.stop:
                 result = self.tape_head.tape
                 self.tape_head.clear()
-                return f"{result}, количество итераций: {counter}"
+                return f"{result}, количество итераций: {self.step_counter}"
 
             self._do_transition(transition)
 
@@ -155,6 +164,10 @@ class TuringMachine:
 
 
     def step(self) -> tuple[str, bool]:
+        if self.step_counter > MAX_ITERATIONS:
+            self.tape_head.clear()
+            raise RuntimeError("Превышен лимит операций")
+        
         current_letter = self.tape_head.read()
 
         transition = self.state_table.get_current_transition(current_letter)
@@ -178,6 +191,7 @@ class TuringMachine:
         
     def set_alphabet(self, alphabet: str) -> None:
         self._validate_alphabet(alphabet)
+        alphabet = ''.join(dict.fromkeys(alphabet))
         self._alphabet = alphabet
 
 
