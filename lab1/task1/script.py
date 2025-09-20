@@ -25,10 +25,10 @@ def load_from_file(path: str) -> TuringMachine:
 
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": #pragma: no cover
     import sys
     if len(sys.argv) < 2:
-        print("Использование: python turing_machine.py <path> [-log]")
+        print("Использование: python3 -m script <path> [-log]")
         sys.exit(1)
 
     path = sys.argv[1]

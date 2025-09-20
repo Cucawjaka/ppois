@@ -19,9 +19,9 @@ def load_from_file(path: str) -> MarkovAlgorithm:
     return ma
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": #pragma: no cover
     if len(sys.argv) < 2:
-        print("Использование: python markov_algorithm.py <path> [-log]")
+        print("Использование: python3 -m script <path> [-log]")
         sys.exit(1)
 
     path = sys.argv[1]

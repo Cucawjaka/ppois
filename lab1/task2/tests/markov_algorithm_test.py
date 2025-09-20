@@ -2,8 +2,6 @@ import pytest
 
 
 from task2.main import (IS_FINAL, MarkovAlgorithm,
-                        Scheme,
-                        Tape,
                         Formula,
                         SIMPLE_SUBSTITUTION_SYMBOL,
                         FINAL_SUBSTITUTION_SYMBOL,

@@ -4,6 +4,9 @@ data.json
 
 .venv
 
-.pytest_cache
-
+#ide
 .vscode
+
+#tests
+.coverage
+.pytest_cache
