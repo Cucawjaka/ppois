@@ -1,7 +1,8 @@
 import sys, json
 
-
-from main import Formula, MarkovAlgorithm, MarkovAlgorithmCLI
+from markov_algorithms.formula import Formula
+from markov_algorithms.markov_algorithm import MarkovAlgorithm
+from markov_algorithms.markov_algoritm_cli import MarkovAlgorithmCLI
 
 
 def load_from_file(path: str) -> MarkovAlgorithm:

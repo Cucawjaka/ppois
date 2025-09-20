@@ -1,7 +1,9 @@
 import pytest
 
 
-from task2.main import Tape, Formula
+
+from markov_algorithms.formula import Formula
+from markov_algorithms.tape import Tape
 from task2.tests.fixtures import tape
     
 

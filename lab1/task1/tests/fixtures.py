@@ -1,6 +1,10 @@
 import pytest
 
-from task1.main import Direction, StateTransitionTable, TapeHead, Transition, TuringMachine
+from turing_machine.direction import Direction
+from turing_machine.state_transition_table import StateTransitionTable
+from turing_machine.tape_head import TapeHead
+from turing_machine.transition import Transition
+from turing_machine.turing_machine import TuringMachine
 
 
 @pytest.fixture(scope="function")

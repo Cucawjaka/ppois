@@ -1,6 +1,8 @@
 import pytest
 
-from task2.main import Scheme, Formula
+
+from markov_algorithms.formula import Formula
+from markov_algorithms.scheme import Scheme
 from task2.tests.fixtures import scheme
 
 

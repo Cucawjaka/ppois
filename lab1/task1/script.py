@@ -1,6 +1,9 @@
 import sys, json
 
-from main import Direction, Transition, TuringMachine, TuringMachineCLI
+from turing_machine.direction import Direction
+from turing_machine.transition import Transition
+from turing_machine.turing_machine import TuringMachine
+from turing_machine.turing_machine_cli import TuringMachineCLI
 
 
 def load_from_file(path: str) -> TuringMachine:
@@ -22,7 +25,6 @@ def load_from_file(path: str) -> TuringMachine:
             tm.load_state(letter, state_name, transition)
 
     return tm
-
 
 
 if __name__ == "__main__": #pragma: no cover

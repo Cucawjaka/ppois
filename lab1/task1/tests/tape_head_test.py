@@ -1,7 +1,9 @@
 import pytest
 
-from task1.main import EMPTY_SYMBOL, TapeHead, Direction, NO_WRITE_SYMBOL
-from task1.tests.fixtures import tape_head
+
+from turing_machine.direction import Direction
+from turing_machine.tape_head import EMPTY_SYMBOL, NO_WRITE_SYMBOL, TapeHead
+from tests.fixtures import tape_head
 
 
 @pytest.mark.parametrize(

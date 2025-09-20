@@ -1,12 +1,10 @@
 import pytest
 
 
-from task2.main import (IS_FINAL, MarkovAlgorithm,
-                        Formula,
-                        SIMPLE_SUBSTITUTION_SYMBOL,
-                        FINAL_SUBSTITUTION_SYMBOL,
-                        EMPTY_SYMBOL,
-                        MAX_ITERATIONS)
+
+
+from markov_algorithms.formula import FINAL_SUBSTITUTION_SYMBOL, Formula
+from markov_algorithms.markov_algorithm import EMPTY_SYMBOL, IS_FINAL, MAX_ITERATIONS, SIMPLE_SUBSTITUTION_SYMBOL, MarkovAlgorithm
 from task2.tests.fixtures import scheme, tape, ma
 
 

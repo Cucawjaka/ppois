@@ -1,7 +1,6 @@
 import pytest
 
-
-from task2.main import Formula
+from markov_algorithms.formula import Formula
 
 
 @pytest.mark.parametrize(

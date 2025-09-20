@@ -1,7 +1,9 @@
 import pytest
 
-
-from task2.main import Formula, Scheme, Tape, MarkovAlgorithm
+from markov_algorithms.formula import Formula
+from markov_algorithms.markov_algorithm import MarkovAlgorithm
+from markov_algorithms.scheme import Scheme
+from markov_algorithms.tape import Tape
 
 
 @pytest.fixture(scope="function")

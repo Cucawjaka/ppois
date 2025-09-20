@@ -1,6 +1,8 @@
 import pytest
 
-from task1.main import StateTransitionTable, Transition, Direction
+
+from turing_machine.state_transition_table import StateTransitionTable
+from turing_machine.transition import Transition
 from task1.tests.fixtures import state_table, transition, state_table_with_transition
 
 

@@ -1,12 +1,11 @@
 import pytest
 
-from task1.main import (TuringMachine,
-                        Transition, 
-                        Direction,
-                        NO_WRITE_SYMBOL,
-                        EMPTY_SYMBOL,
-                        MAX_ITERATIONS)
-from task1.tests.fixtures import tm
+
+from turing_machine.direction import Direction
+from turing_machine.tape_head import EMPTY_SYMBOL, NO_WRITE_SYMBOL
+from turing_machine.transition import Transition
+from turing_machine.turing_machine import MAX_ITERATIONS, TuringMachine
+from tests.fixtures import tm
 
 
 def test_run(tm: TuringMachine):
