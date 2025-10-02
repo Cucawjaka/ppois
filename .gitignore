@@ -10,3 +10,5 @@ data.json
 #tests
 .coverage
 .pytest_cache
+
+*.md
