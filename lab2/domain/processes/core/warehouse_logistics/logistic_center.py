@@ -51,10 +51,7 @@ class LogisticsCenter:
                 if not wh.check_availability(item, quantity):
                     raise NotEnoughItem("Недостаточное количество на складе")
                 
-                if isinstance(item, Product):
-                     wh.ship_product(item, quantity)
-                if isinstance(item, Material):
-                     wh.consume_material(item, quantity)
+                wh.consume_item(item, quantity)
 
                 cargo_items[item] += quantity
 
