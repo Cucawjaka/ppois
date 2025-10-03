@@ -1,5 +1,5 @@
 from core.exceptions import FrozenAccountError, NotEnoughMoneyError
-from domain.processes.supporting.finance.currency import Currency
+from domain.processes.supporting.finance.currency_converter import Currency
 
 
 class BankAccount:

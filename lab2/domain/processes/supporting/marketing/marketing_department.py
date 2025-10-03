@@ -1,13 +1,7 @@
-from dataclasses import dataclass
 from core.exceptions import CampaignNotFoundError
 from domain.processes.supporting.finance.budget import Budget
+from domain.processes.supporting.marketing.campaign_report import CampaignReport
 from domain.processes.supporting.marketing.marketing_campaign import MarketingCampaign
-
-
-@dataclass
-class CampaignReport:
-    name: str
-    roi: float
 
 
 class MarketingDepatment:

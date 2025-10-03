@@ -2,7 +2,7 @@ from core.exceptions import EmployeeNotFoundError
 from core.utils.id_generator import IDGenerator
 from domain.processes.supporting.staff.email_account import EmailAccount
 from domain.processes.supporting.staff.employee import Employee
-from domain.processes.supporting.staff.permission import Permission
+from core.enums.permission import Permission
 
 
 class HRDepartment:

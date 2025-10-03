@@ -1,12 +1,5 @@
-from enum import StrEnum, auto
-
+from core.enums.currency import Currency
 from core.exceptions import ConverterError
-
-
-class Currency(StrEnum):
-    EURO = auto()
-    DOLLAR = auto()
-    BYN = auto()
 
 
 class CurrencyConverter():

@@ -1,8 +1,7 @@
 from core.exceptions import AccountClosingError, BankAccountNotFoundError, TransactionError
 from domain.processes.supporting.finance.bank_account import BankAccount
-from domain.processes.supporting.finance.currency import Currency
+from domain.processes.supporting.finance.currency_converter import Currency
 from domain.processes.supporting.finance.transaction import Transaction
-
 
 
 class AccountingDepartment:
