@@ -1,7 +1,7 @@
 from core.exceptions import TaskNotFoundError
 from domain.processes.supporting.staff.email_account import EmailAccount
 from domain.processes.supporting.staff.employee_task import EmployeeTask
-from domain.processes.supporting.staff.permission import Permission
+from core.enums.permission import Permission
 
 
 class Employee:

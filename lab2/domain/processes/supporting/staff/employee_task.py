@@ -1,12 +1,7 @@
 from enum import StrEnum, auto
 
+from core.enums.status import Status
 from core.utils.id_generator import IDGenerator
-
-
-class Status(StrEnum):
-    NOT_STARTED = auto()
-    COMPLITED = auto()
-    IN_PROCCES = auto()
 
 
 class EmployeeTask:
