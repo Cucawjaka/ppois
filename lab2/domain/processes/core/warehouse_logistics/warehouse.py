@@ -26,8 +26,18 @@ class WareHouse:
                 self._products[item] += quantity
 
 
-    def consume_material(self, material: Material, quantity: int) -> None:
-        self._inventory[material] -= quantity
+    def receive_item(self, item: Material | Product, quantity: int) -> None:
+        if isinstance(item, Material):
+            self._inventory[item] += quantity
+        if isinstance(item, Product):
+            self._products[item] += quantity
+
+
+    def consume_item(self, item: Material | Product, quantity: int) -> None:
+        if isinstance(item, Material):
+            self._inventory[item] -= quantity
+        if isinstance(item, Product):
+            self._products[item] -= quantity
 
 
     def check_availability(self, item: Material | Product, quantity: int) -> bool:
@@ -44,7 +54,3 @@ class WareHouse:
             report[material] = self._inventory[material]
 
         return report
-
-
-    def ship_product(self, product: Product, quantity: int) -> None:
-        self._products[product] -= quantity
