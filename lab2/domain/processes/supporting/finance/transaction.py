@@ -1,21 +1,23 @@
 import datetime
 from typing import Literal
-from core.exceptions import ConverterError, TransactionError, TransactionNotComplitedError, TransactionFailedError
+from core.enums.currency import Currency
+from core.exceptions import ConverterError, TransactionError
 from core.utils.id_generator import IDGenerator
 from domain.processes.supporting.finance.bank_account import BankAccount
-from domain.processes.supporting.finance.currency_converter import Currency, CurrencyConverter
+from domain.processes.supporting.finance.currency_converter import CurrencyConverter
 from domain.processes.supporting.finance.receipt import Receipt
 
 
 class Transaction:
-    def __init__(self,
-                 amount: int,
-                 from_account: BankAccount,
-                 to_account: BankAccount,
-                 currency_converter: CurrencyConverter,
-                 type_: Literal["transfer", "tax", "salary", "payment", "return"],
-                 description: str
-                 ) -> None:
+    def __init__(
+        self,
+        amount: int,
+        from_account: BankAccount,
+        to_account: BankAccount,
+        currency_converter: CurrencyConverter,
+        type_: Literal["transfer", "tax", "salary", "payment", "return"],
+        description: str,
+    ) -> None:
         self._validate_amount(amount)
 
         self._id: str = IDGenerator.create_uuid()
@@ -29,24 +31,20 @@ class Transaction:
         self._status: Literal["complited", "pending", "failed", "wrong"] = "pending"
         self._currency_converter = currency_converter
 
-
     @property
     def from_account(self) -> BankAccount:
         return self._from_account
-    
 
     @property
     def to_account(self) -> BankAccount:
         return self._to_account
-    
 
     def set_failed(self) -> None:
         self._status = "failed"
-        
 
     def get_receipt(self) -> Receipt:
         if self._status != "complited":
-            raise TransactionNotComplitedError("Транзакция еще не выполнена")
+            raise TransactionError("Транзакция еще не выполнена")
         return Receipt(
             self._amount,
             self._currency,
@@ -54,10 +52,9 @@ class Transaction:
             self._to_account,
             self._data,
             self._type,
-            self._description
+            self._description,
         )
-        
-    
+
     def reverce(self) -> None:
         reversed_transaction: "Transaction" = Transaction(
             amount=self._amount,
@@ -65,35 +62,32 @@ class Transaction:
             to_account=self._from_account,
             currency_converter=self._currency_converter,
             type_="return",
-            description=""
+            description="",
         )
         reversed_transaction.execute()
         self._status = "wrong"
 
-
-
     @staticmethod
     def _validate_amount(amount: int) -> None:
-        if amount < 0: raise TransactionError(f"Неверная сумма транзакции: {amount}")
-
+        if amount < 0:
+            raise TransactionError(f"Неверная сумма транзакции: {amount}")
 
     def execute(self) -> None:
         if self._from_account.balance < self._amount:
             self._status = "failed"
-            raise TransactionFailedError("Недостаточно средств")
-        
+            raise TransactionError("Недостаточно средств")
+
         try:
             converted_amount: int = self._convert_to_currency()
             self._from_account.withdraw(self._amount)
             self._to_account.deposit(converted_amount)
             self._status = "complited"
         except ConverterError:
-            raise TransactionFailedError("Не удалось сконвертировать валюту")
-    
+            raise TransactionError("Не удалось сконвертировать валюту")
 
     def _convert_to_currency(self) -> int:
         return self._currency_converter.convert(
-            amount = self._amount,
+            amount=self._amount,
             from_currency=self._from_account.currency,
-            to_currency=self._to_account.currency
+            to_currency=self._to_account.currency,
         )

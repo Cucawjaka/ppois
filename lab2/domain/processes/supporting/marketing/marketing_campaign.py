@@ -18,24 +18,21 @@ class MarketingCampaign:
         self._status: Literal["active", "completed", "planned"] = "planned"
         self._target_countries: list[Country] = list()
 
-
     def add_country(self, country: Country) -> None:
         if country in self._target_countries:
             return
         self._target_countries.append(country)
 
-
     def remove_country(self, country: Country) -> None:
-        try: 
+        try:
             self._target_countries.remove(country)
         except ValueError:
             return
 
-
     def add_channel(self, channel: AdvertidingChannel, channel_budget: int) -> None:
         if channel in self._channels:
             raise AdvertisementChannelExistedError("Канал уже существует")
-        
+
         try:
             self._budget.spend(channel_budget)
             channel.set_budget(channel_budget)
@@ -44,28 +41,23 @@ class MarketingCampaign:
             self.remove_channel(channel)
             raise e
 
-
     def remove_channel(self, channel: AdvertidingChannel) -> None:
         try:
             self._channels.remove(channel)
         except ValueError:
-            return 
-
+            return
 
     def start_campagain(self) -> None:
         self._start_date = datetime.datetime.now()
         self._status = "active"
 
-
     def finish_campagain(self) -> None:
         self._end_date = datetime.datetime.now()
         self._status = "completed"
 
-
     @property
     def name(self) -> str:
         return self._name
-
 
     def calculate_roi(self, revenue: int) -> float:
         return revenue / self._budget.amount_allocated * 100

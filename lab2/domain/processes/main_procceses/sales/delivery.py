@@ -1,7 +1,7 @@
 from typing import Literal
-from core.exceptions import OrderError
+from core.exceptions import SaleOrderError
 from core.utils.id_generator import IDGenerator
-from domain.processes.core.sales.order import Order
+from domain.processes.main_procceses.sales.order import Order
 
 
 class Delivery:
@@ -11,18 +11,15 @@ class Delivery:
         self._address: str = address
         self._status: Literal["scheduled", "delivering", "delivered"] = "scheduled"
 
-
     def start(self) -> None:
         if self._order.status != "paid":
-            raise OrderError("Нельзя отправить неоплаченный заказ")
+            raise SaleOrderError("Нельзя отправить неоплаченный заказ")
         self._status = "delivering"
         self._order.status = "shipped"
-
 
     def complete(self) -> None:
         self._status = "delivered"
         self._order.status = "delivered"
-
 
     @property
     def status(self) -> str:

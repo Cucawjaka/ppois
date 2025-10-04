@@ -2,8 +2,8 @@ from dataclasses import dataclass
 import datetime
 from typing import Literal
 
+from core.enums.currency import Currency
 from domain.processes.supporting.finance.bank_account import BankAccount
-from domain.processes.supporting.finance.currency_converter import Currency
 
 
 @dataclass(frozen=True)
@@ -15,7 +15,6 @@ class Receipt:
     data: datetime.datetime
     type: Literal["transfer", "tax", "salary", "payment", "return"]
     descrpition: str
-
 
     def __str__(self) -> str:
         return (

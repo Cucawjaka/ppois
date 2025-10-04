@@ -5,7 +5,7 @@ from core.enums.product import Product
 from core.exceptions import WrongDestinationError
 from core.utils.id_generator import IDGenerator
 
-from domain.processes.core.warehouse_logistics.cargo import Cargo
+from domain.processes.main_procceses.warehouse_logistics.cargo import Cargo
 
 
 class WareHouse:
@@ -15,7 +15,6 @@ class WareHouse:
         self._inventory: dict[Material, int] = defaultdict(int)
         self._products: dict[Product, int] = defaultdict(int)
 
-
     def get_cargo(self, cargo: Cargo) -> None:
         if cargo.destiantion != self._id:
             raise WrongDestinationError("Неверная точка назначения")
@@ -23,8 +22,7 @@ class WareHouse:
             if isinstance(item, Material):
                 self._inventory[item] += quantity
         if isinstance(item, Product):
-                self._products[item] += quantity
-
+            self._products[item] += quantity
 
     def receive_item(self, item: Material | Product, quantity: int) -> None:
         if isinstance(item, Material):
@@ -32,20 +30,17 @@ class WareHouse:
         if isinstance(item, Product):
             self._products[item] += quantity
 
-
     def consume_item(self, item: Material | Product, quantity: int) -> None:
         if isinstance(item, Material):
             self._inventory[item] -= quantity
         if isinstance(item, Product):
             self._products[item] -= quantity
 
-
     def check_availability(self, item: Material | Product, quantity: int) -> bool:
         if isinstance(item, Material):
             return self._inventory[item] > quantity
         if isinstance(item, Product):
             return self._products[item] > quantity
-
 
     def inventory_report(self, materials: list[Material]) -> dict[Material, int]:
         report: dict[Material, int] = dict()

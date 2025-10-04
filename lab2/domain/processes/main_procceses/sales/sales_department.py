@@ -1,8 +1,8 @@
-from domain.processes.core.sales.customer import Customer
-from domain.processes.core.sales.delivery import Delivery
-from domain.processes.core.sales.invoice import Invoice
-from domain.processes.core.sales.order import Order
-from domain.processes.core.sales.order_item import OrderItem
+from domain.processes.main_procceses.sales.customer import Customer
+from domain.processes.main_procceses.sales.delivery import Delivery
+from domain.processes.main_procceses.sales.invoice import Invoice
+from domain.processes.main_procceses.sales.order import Order
+from domain.processes.main_procceses.sales.order_item import OrderItem
 
 
 class SalesDepartment:
@@ -12,10 +12,8 @@ class SalesDepartment:
         self._invoices: dict[str, Invoice] = dict()
         self._deliveries: dict[str, Delivery] = dict()
 
-
     def register_customer(self, customer: Customer) -> None:
         self._customers[customer.name] = customer
-
 
     def create_order(self, customer: Customer, items: list[OrderItem]) -> Order:
         order = Order()
@@ -25,18 +23,15 @@ class SalesDepartment:
         customer.add_order(order)
         return order
 
-
     def get_invoice(self, order: Order) -> Invoice:
         invoice = Invoice(order)
         self._invoices[invoice.id] = invoice
         return invoice
 
-
     def arrange_delivery(self, order: Order, address: str) -> Delivery:
         delivery = Delivery(order, address)
         self._deliveries[delivery._id] = delivery
         return delivery
-
 
     def get_customer_orders(self, customer: Customer) -> list[Order]:
         return customer.order_history()

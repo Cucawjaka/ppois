@@ -10,7 +10,6 @@ class WeightMap:
     def add_weight(cls, item: Product | Material, weight: float) -> None:
         cls.weight_map[item] = weight
 
-
     @classmethod
     def get_weight(cls, item: Product | Material) -> float:
         if item not in cls.weight_map:

@@ -1,5 +1,3 @@
-from enum import StrEnum, auto
-
 from core.enums.status import Status
 from core.utils.id_generator import IDGenerator
 
@@ -11,13 +9,11 @@ class EmployeeTask:
         self._description: str = description
 
     @property
-    def id(self):
+    def id(self) -> str:
         return self.id
-    
 
     def start(self) -> None:
         self._status = Status.IN_PROCCES
-
 
     def finish(self) -> None:
         self._status = Status.COMPLITED
