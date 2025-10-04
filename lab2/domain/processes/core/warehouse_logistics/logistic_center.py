@@ -18,6 +18,11 @@ class LogisticsCenter:
         self._cargos: list[Cargo] = list()
 
 
+    @property
+    def country(self) -> Country:
+        return self._country
+
+
     def register_warehouse(self, warehouse: WareHouse) -> None:
         self._warehauses.append(warehouse)
 
