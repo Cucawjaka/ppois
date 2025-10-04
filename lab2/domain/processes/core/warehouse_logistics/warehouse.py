@@ -11,7 +11,7 @@ from domain.processes.core.warehouse_logistics.cargo import Cargo
 class WareHouse:
     def __init__(self, location: Country) -> None:
         self._id: str = IDGenerator.create_uuid()
-        self._location: str = location
+        self._location: Country = location
         self._inventory: dict[Material, int] = defaultdict(int)
         self._products: dict[Product, int] = defaultdict(int)
 
