@@ -11,4 +11,8 @@ data.json
 .coverage
 .pytest_cache
 
+
+#type checker
+.mypy_cache
+
 *.md
