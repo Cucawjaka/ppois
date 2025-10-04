@@ -1,7 +1,6 @@
 from datetime import datetime
 from core.utils.id_generator import IDGenerator
-from domain.processes.core.sales.order import Order
-
+from domain.processes.main_procceses.sales.order import Order
 
 
 class Invoice:
@@ -12,17 +11,14 @@ class Invoice:
         self._paid_date: datetime | None = None
         self._paid: bool = False
 
-
     def pay(self) -> None:
         self._paid = True
         self._paid_date = datetime.now()
         self._order.status = "paid"
 
-
     @property
     def is_paid(self) -> bool:
         return self._paid
-    
 
     @property
     def id(self) -> str:

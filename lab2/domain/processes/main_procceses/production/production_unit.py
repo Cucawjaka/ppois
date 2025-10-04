@@ -13,22 +13,18 @@ class ProductionUnit:
         self._start_time: datetime | None = None
         self._expected_finish: datetime | None = None
 
-
     @property
     def capabilities(self) -> dict[Product, timedelta]:
         return self._capabilities
-    
 
     @property
     def expected_finish(self) -> datetime | None:
         return self._expected_finish
 
-
     def calculate_production_time(self, product: Product) -> timedelta:
         if product not in self._capabilities:
             raise InvalidProductError(f"{self._name} не может производить {product}")
         return self._capabilities[product]
-
 
     def start_production(self, product: Product) -> datetime:
         if self._status == "running":
@@ -41,29 +37,25 @@ class ProductionUnit:
         self._expected_finish = self._start_time + production_time
         return self._expected_finish
 
-
     def stop_production(self) -> None:
         self._status = "stopped"
         self._current_task = None
         self._start_time = None
         self._expected_finish = None
 
-
     def finish_production(self) -> Product:
         if self._current_task is None:
             raise ProductionUnitError("Станок ничего не производит")
-        
-        product: Product = self._current_task 
+
+        product: Product = self._current_task
         self._status = "free"
         self._current_task = None
         self._start_time = None
         self._expected_finish = None
-        return product 
-
+        return product
 
     def is_available(self) -> bool:
         return self._status in ["free", "stopped"]
-
 
     def get_status(self) -> str:
         if self._status == "running":

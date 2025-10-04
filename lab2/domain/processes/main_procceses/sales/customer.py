@@ -1,5 +1,4 @@
-from core.utils.id_generator import IDGenerator
-from domain.processes.core.sales.order import Order
+from domain.processes.main_procceses.sales.order import Order
 
 
 class Customer:
@@ -9,15 +8,12 @@ class Customer:
         self._address: str = address
         self._orders: list[Order] = list()
 
-
     @property
     def name(self) -> str:
         return self._name
 
-
     def add_order(self, order: Order) -> None:
         self._orders.append(order)
-
 
     def order_history(self) -> list["Order"]:
         return self._orders

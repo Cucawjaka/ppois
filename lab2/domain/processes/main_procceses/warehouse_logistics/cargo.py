@@ -10,6 +10,6 @@ class Cargo:
     items: dict[Material | Product, int]
     origin: str
     destiantion: str
-    customs_status: Literal["domestic", "export_cleared", "import_cleared", "custom_required"]
-
-
+    customs_status: Literal[
+        "domestic", "export_cleared", "import_cleared", "custom_required"
+    ]
