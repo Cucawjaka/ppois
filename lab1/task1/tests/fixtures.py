@@ -15,33 +15,34 @@ def state_table() -> StateTransitionTable:
 
 @pytest.fixture
 def transition() -> Transition:
-    transition = Transition(
-        write="a",
-        move=Direction.LEFT,
-        next_state="q0")
+    transition = Transition(write="a", move=Direction.LEFT, next_state="q0")
     return transition
 
 
 @pytest.fixture(scope="function")
-def state_table_with_transition(state_table: StateTransitionTable, transition: Transition):
+def state_table_with_transition(
+    state_table: StateTransitionTable, transition: Transition
+):
     state_table.add_state(transition, "b", "q0")
     return state_table
 
 
 @pytest.fixture(scope="function")
 def tape_head() -> TapeHead:
-    new_tape = TapeHead()
     return TapeHead()
 
 
 def mock_wirte(value: str) -> None:
     pass
 
+
 def mock_move(direction: Direction) -> None:
     pass
 
+
 def mock_set_state(state_name: str) -> None:
     pass
+
 
 def mock_read() -> str:
     return "a"
