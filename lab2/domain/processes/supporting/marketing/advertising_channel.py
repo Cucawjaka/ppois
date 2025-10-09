@@ -1,7 +1,7 @@
 from core.enums.advertisement import Advertisement
 
 
-class AdvertidingChannel:
+class AdvertisingChannel:
     def __init__(
         self,
         type_: Advertisement,
