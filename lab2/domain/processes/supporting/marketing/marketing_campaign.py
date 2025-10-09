@@ -1,10 +1,13 @@
 import datetime
 from typing import Literal
 from core.enums.country import Country
-from core.exceptions import AdvertisementChannelExistedError, BudgetLimitExceededError
+from core.exceptions import (
+    AdvertisementChannelExistedError,
+    NotFoundError,
+)
 from core.utils.id_generator import IDGenerator
 from domain.processes.supporting.finance.budget import Budget
-from domain.processes.supporting.marketing.advertising_channel import AdvertidingChannel
+from domain.processes.supporting.marketing.advertising_channel import AdvertisingChannel
 
 
 class MarketingCampaign:
@@ -12,7 +15,7 @@ class MarketingCampaign:
         self._id: str = IDGenerator.create_uuid()
         self._name: str = name
         self._budget: Budget = budget
-        self._channels: list[AdvertidingChannel] = list()
+        self._channels: list[AdvertisingChannel] = list()
         self._start_date: datetime.datetime
         self._end_date: datetime.datetime
         self._status: Literal["active", "completed", "planned"] = "planned"
@@ -29,29 +32,24 @@ class MarketingCampaign:
         except ValueError:
             return
 
-    def add_channel(self, channel: AdvertidingChannel, channel_budget: int) -> None:
+    def add_channel(self, channel: AdvertisingChannel, channel_budget: int) -> None:
         if channel in self._channels:
             raise AdvertisementChannelExistedError("Канал уже существует")
 
-        try:
-            self._budget.spend(channel_budget)
-            channel.set_budget(channel_budget)
-            self._channels.append(channel)
-        except BudgetLimitExceededError as e:
-            self.remove_channel(channel)
-            raise e
+        self._budget.spend(channel_budget)
+        channel.set_budget(channel_budget)
+        self._channels.append(channel)
 
-    def remove_channel(self, channel: AdvertidingChannel) -> None:
-        try:
-            self._channels.remove(channel)
-        except ValueError:
-            return
+    def remove_channel(self, channel: AdvertisingChannel) -> None:
+        if channel not in self._channels:
+            raise NotFoundError("Такого канала не существует")
+        self._channels.remove(channel)
 
-    def start_campagain(self) -> None:
+    def start_campaign(self) -> None:
         self._start_date = datetime.datetime.now()
         self._status = "active"
 
-    def finish_campagain(self) -> None:
+    def finish_campaign(self) -> None:
         self._end_date = datetime.datetime.now()
         self._status = "completed"
 

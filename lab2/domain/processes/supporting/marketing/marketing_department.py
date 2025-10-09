@@ -11,7 +11,9 @@ class MarketingDepatment:
 
     def create_campaign(self, name: str, budget_amount: int) -> MarketingCampaign:
         campaign_budget: Budget = self._budget.allocate_subbudget(budget_amount)
-        return MarketingCampaign(name, campaign_budget)
+        new_campaign: MarketingCampaign = MarketingCampaign(name, campaign_budget)
+        self._campaigns.append(new_campaign)
+        return new_campaign
 
     def analyze_campaign(self, campaign_name: str, revenue: int) -> CampaignReport:
         for campaign in self._campaigns:
