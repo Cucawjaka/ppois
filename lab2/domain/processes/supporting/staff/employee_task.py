@@ -10,7 +10,7 @@ class EmployeeTask:
 
     @property
     def id(self) -> str:
-        return self.id
+        return self._id
 
     def start(self) -> None:
         self._status = Status.IN_PROCCES
