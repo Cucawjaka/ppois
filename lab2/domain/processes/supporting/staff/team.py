@@ -5,7 +5,7 @@ from domain.processes.supporting.staff.employee import Employee
 class Team:
     def __init__(self, id: str, manager: Employee) -> None:
         self._id = id
-        self._employee_list: list[Employee] = list()
+        self._employee_list: list[Employee] = [manager]
         self._manager: Employee = manager
 
     def add_member(self, employee: Employee) -> None:
