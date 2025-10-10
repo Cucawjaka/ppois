@@ -19,11 +19,6 @@ def logistic_center() -> LogisticsCenter:
 
 
 @pytest.fixture
-def warehouse() -> WareHouse:
-    return WareHouse(Country.BELARUS)
-
-
-@pytest.fixture
 def cargo() -> Cargo:
     new_cargo: Cargo = Cargo(
         items={Material.STEEL: 5, Product.CAR: 5},
