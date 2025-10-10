@@ -16,7 +16,7 @@ class Transaction:
         to_account: BankAccount,
         currency_converter: CurrencyConverter,
         type_: Literal["transfer", "tax", "salary", "payment", "return"],
-        description: str,
+        description: str = "",
     ) -> None:
         self._validate_amount(amount)
 
@@ -73,6 +73,7 @@ class Transaction:
             raise TransactionError(f"Неверная сумма транзакции: {amount}")
 
     def execute(self) -> None:
+        self._data = datetime.datetime.now()
         if self._from_account.balance < self._amount:
             self._status = "failed"
             raise TransactionError("Недостаточно средств")

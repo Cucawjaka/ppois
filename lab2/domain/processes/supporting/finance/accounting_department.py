@@ -11,7 +11,9 @@ class AccountingDepartment:
         self._accounts: list[BankAccount] = list()
 
     def open_account(self, account_number: str, currency: Currency) -> BankAccount:
-        return BankAccount(account_number, currency)
+        new_account: BankAccount = BankAccount(account_number, currency)
+        self._accounts.append(new_account)
+        return new_account
 
     def close_account(self, account_number: str) -> None:
         for account in self._accounts:
@@ -21,6 +23,7 @@ class AccountingDepartment:
                         f"Невозможно закрыть счет: {account_number}, пока на нем есть деньги"
                     )
                 self._accounts.remove(account)
+                return None
         raise NotFoundError(f"Счета {account_number} не существует")
 
     def process_transaction(self, transaction: Transaction) -> None:
