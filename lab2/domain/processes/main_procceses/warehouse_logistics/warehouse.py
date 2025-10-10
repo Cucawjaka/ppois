@@ -16,7 +16,7 @@ class WareHouse:
         self._products: dict[Product, int] = defaultdict(int)
 
     def get_cargo(self, cargo: Cargo) -> None:
-        if cargo.destiantion != self._id:
+        if cargo.destination != self._id:
             raise WrongDestinationError("Неверная точка назначения")
         for item, quantity in cargo.items.items():
             if isinstance(item, Material):
@@ -38,9 +38,9 @@ class WareHouse:
 
     def check_availability(self, item: Material | Product, quantity: int) -> bool:
         if isinstance(item, Material):
-            return self._inventory[item] > quantity
+            return self._inventory[item] >= quantity
         if isinstance(item, Product):
-            return self._products[item] > quantity
+            return self._products[item] >= quantity
 
     def inventory_report(self, materials: list[Material]) -> dict[Material, int]:
         report: dict[Material, int] = dict()
