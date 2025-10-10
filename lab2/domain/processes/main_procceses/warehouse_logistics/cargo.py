@@ -9,7 +9,7 @@ from core.enums.product import Product
 class Cargo:
     items: dict[Material | Product, int]
     origin: str
-    destiantion: str
+    destination: str
     customs_status: Literal[
         "domestic", "export_cleared", "import_cleared", "custom_required"
     ]
