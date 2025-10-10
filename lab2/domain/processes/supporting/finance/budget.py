@@ -26,7 +26,7 @@ class Budget:
 
     @property
     def status(self) -> Literal["active", "closed", "over_limit"]:
-        return self.status
+        return self._status
 
     def _is_over_limit(self, amount: int) -> bool:
         return self._amount_spend + amount > self._amount_allocated
