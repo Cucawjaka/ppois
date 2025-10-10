@@ -17,10 +17,6 @@ class ProductionUnit:
     def capabilities(self) -> dict[Product, timedelta]:
         return self._capabilities
 
-    @property
-    def expected_finish(self) -> datetime | None:
-        return self._expected_finish
-
     def calculate_production_time(self, product: Product) -> timedelta:
         if product not in self._capabilities:
             raise InvalidProductError(f"{self._name} не может производить {product}")
