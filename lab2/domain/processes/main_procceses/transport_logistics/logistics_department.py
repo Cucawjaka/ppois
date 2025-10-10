@@ -28,15 +28,16 @@ class LogisticsDepartment:
         self,
         destination: LogisticsCenter,
         origin: LogisticsCenter,
-        checkpoints: list[LogisticsCenter] | None,
+        checkpoints: list[LogisticsCenter] | None = None,
     ) -> Route:
         route = Route(origin, destination, checkpoints)
         return route
 
     def start_delivery(self, cargo: Cargo, route: Route) -> None:
+        vehicle: Vehicle | None = None
         for carrier in self._carriers:
             try:
-                vehicle: Vehicle = carrier.choose_vehicle(cargo)
+                vehicle = carrier.choose_vehicle(cargo)
             except VehicleError:
                 continue
 
@@ -49,7 +50,6 @@ class LogisticsDepartment:
         shipment.start()
 
     def track_cargo(self, shipment_id: str) -> str:
-        """Вернуть текущий статус груза (по всем маршрутам)."""
         shipment: Shipment | None = self._shipments.get(shipment_id, None)
         if not shipment:
             raise NotFoundError(f"Перевозка с id {shipment_id} не найдена")

@@ -13,7 +13,7 @@ class Vehicle:
 
     @property
     def vehicle_number(self) -> str:
-        return self.vehicle_number
+        return self._vehicle_number
 
     @property
     def is_busy(self) -> bool:
