@@ -7,11 +7,9 @@ from domain.processes.main_procceses.production.technological_card import (
 
 
 class ProductionOrder:
-    def __init__(
-        self, product: Product, quantity: int, technological_card: TechnologicalCard
-    ) -> None:
+    def __init__(self, quantity: int, technological_card: TechnologicalCard) -> None:
         self._id = IDGenerator.create_uuid()
-        self._product: Product = product
+        self._product: Product = technological_card.product
         self._quantity: int = quantity
         self._technological_card: TechnologicalCard = technological_card
 
