@@ -5,13 +5,16 @@ description = "University subject about oop"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "mypy>=1.18.2",
     "pytest>=8.4.2",
     "pytest-cov>=7.0.0",
 ]
 
 [tool.pytest.ini_options]
 testpaths = ["lab1/task1/tests",
-             "lab1/task2/tests"]
+             "lab1/task2/tests",
+             "lab4/task1/tests"]
 pythonpath = ["lab1/task1",
-              "lab1/task2"]
+              "lab1/task2",
+              "lab4/task1"]
 

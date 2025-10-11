@@ -10,3 +10,9 @@ data.json
 #tests
 .coverage
 .pytest_cache
+
+
+#type checker
+.mypy_cache
+
+*.md
