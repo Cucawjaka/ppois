@@ -14,5 +14,3 @@ data.json
 
 #type checker
 .mypy_cache
-
-*.md
