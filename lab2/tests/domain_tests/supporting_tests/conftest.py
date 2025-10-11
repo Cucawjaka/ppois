@@ -1,6 +1,6 @@
 import pytest
 
-from domain.processes.supporting.finance.budget import Budget
+from domain.processes.supporting.finance.Budget import Budget
 
 
 @pytest.fixture

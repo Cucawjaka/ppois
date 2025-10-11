@@ -1,12 +1,12 @@
 import pytest
 
-from core.enums.permission import Permission
-from core.utils.id_generator import IDGenerator
-from domain.processes.supporting.staff.HR_department import HRDepartment
-from domain.processes.supporting.staff.email_account import EmailAccount
-from domain.processes.supporting.staff.employee import Employee
-from domain.processes.supporting.staff.employee_task import EmployeeTask
-from domain.processes.supporting.staff.team import Team
+from core.enums.Permission import Permission
+from core.utils.IDGenerator import IDGenerator
+from domain.processes.supporting.staff.HRDepartment import HRDepartment
+from domain.processes.supporting.staff.EmailAccount import EmailAccount
+from domain.processes.supporting.staff.Employee import Employee
+from domain.processes.supporting.staff.EmployeeTask import EmployeeTask
+from domain.processes.supporting.staff.Team import Team
 
 
 @pytest.fixture

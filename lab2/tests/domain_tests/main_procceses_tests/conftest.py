@@ -1,10 +1,10 @@
 import pytest
 
-from core.enums.country import Country
-from core.enums.material import Material
-from core.enums.product import Product
-from domain.processes.main_procceses.warehouse_logistics.cargo import Cargo
-from domain.processes.main_procceses.warehouse_logistics.warehouse import WareHouse
+from core.enums.Country import Country
+from core.enums.Material import Material
+from core.enums.Product import Product
+from domain.processes.main_procceses.warehouse_logistics.Cargo import Cargo
+from domain.processes.main_procceses.warehouse_logistics.Warehouse import WareHouse
 
 
 @pytest.fixture

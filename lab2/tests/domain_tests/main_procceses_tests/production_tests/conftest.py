@@ -1,17 +1,17 @@
 import datetime
 import pytest
 
-from core.enums.material import Material
-from core.enums.product import Product
-from domain.processes.main_procceses.production.factory import Factory
-from domain.processes.main_procceses.production.production_line import ProductionLine
-from domain.processes.main_procceses.production.production_order import ProductionOrder
-from domain.processes.main_procceses.production.production_plan import ProductionPlan
-from domain.processes.main_procceses.production.production_unit import ProductionUnit
-from domain.processes.main_procceses.production.technological_card import (
+from core.enums.Material import Material
+from core.enums.Product import Product
+from domain.processes.main_procceses.production.Factory import Factory
+from domain.processes.main_procceses.production.ProductionLine import ProductionLine
+from domain.processes.main_procceses.production.ProductionOrder import ProductionOrder
+from domain.processes.main_procceses.production.ProductionPlan import ProductionPlan
+from domain.processes.main_procceses.production.ProductionUnit import ProductionUnit
+from domain.processes.main_procceses.production.TechnologicalCard import (
     TechnologicalCard,
 )
-from domain.processes.main_procceses.warehouse_logistics.warehouse import WareHouse
+from domain.processes.main_procceses.warehouse_logistics.Warehouse import WareHouse
 
 
 @pytest.fixture
