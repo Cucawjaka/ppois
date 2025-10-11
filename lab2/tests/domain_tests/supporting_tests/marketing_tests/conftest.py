@@ -1,10 +1,10 @@
 import pytest
 
-from core.enums.advertisement import Advertisement
-from domain.processes.supporting.finance.budget import Budget
-from domain.processes.supporting.marketing.advertising_channel import AdvertisingChannel
-from domain.processes.supporting.marketing.marketing_campaign import MarketingCampaign
-from domain.processes.supporting.marketing.marketing_department import (
+from core.enums.Advertisement import Advertisement
+from domain.processes.supporting.finance.Budget import Budget
+from domain.processes.supporting.marketing.AdvertisingChannel import AdvertisingChannel
+from domain.processes.supporting.marketing.MarketingCampaign import MarketingCampaign
+from domain.processes.supporting.marketing.MarketingDepartment import (
     MarketingDepatment,
 )
 

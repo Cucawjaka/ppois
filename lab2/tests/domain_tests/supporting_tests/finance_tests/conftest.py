@@ -1,12 +1,12 @@
 import pytest
 
-from core.enums.currency import Currency
-from domain.processes.supporting.finance.accounting_department import (
+from core.enums.Currency import Currency
+from domain.processes.supporting.finance.AccountingDepartment import (
     AccountingDepartment,
 )
-from domain.processes.supporting.finance.bank_account import BankAccount
-from domain.processes.supporting.finance.currency_converter import CurrencyConverter
-from domain.processes.supporting.finance.transaction import Transaction
+from domain.processes.supporting.finance.BankAccount import BankAccount
+from domain.processes.supporting.finance.CurrencyConverter import CurrencyConverter
+from domain.processes.supporting.finance.Transaction import Transaction
 
 
 @pytest.fixture(scope="function")

@@ -1,15 +1,15 @@
 import pytest
 
-from core.enums.country import Country
-from domain.processes.main_procceses.transport_logistics.carrier import Carrier
-from domain.processes.main_procceses.transport_logistics.logistics_department import (
+from core.enums.Country import Country
+from domain.processes.main_procceses.transport_logistics.Carrier import Carrier
+from domain.processes.main_procceses.transport_logistics.LogisticsDepartment import (
     LogisticsDepartment,
 )
-from domain.processes.main_procceses.transport_logistics.route import Route
-from domain.processes.main_procceses.transport_logistics.shipment import Shipment
-from domain.processes.main_procceses.transport_logistics.vehicle import Vehicle
-from domain.processes.main_procceses.warehouse_logistics.cargo import Cargo
-from domain.processes.main_procceses.warehouse_logistics.logistic_center import (
+from domain.processes.main_procceses.transport_logistics.Route import Route
+from domain.processes.main_procceses.transport_logistics.Shipment import Shipment
+from domain.processes.main_procceses.transport_logistics.Vehicle import Vehicle
+from domain.processes.main_procceses.warehouse_logistics.Cargo import Cargo
+from domain.processes.main_procceses.warehouse_logistics.LogisticCenter import (
     LogisticsCenter,
 )
 
