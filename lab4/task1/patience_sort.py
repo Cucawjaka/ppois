@@ -1,6 +1,6 @@
 from bisect import bisect_left
 
-from task1.comparable import Comparable
+from task1.Comparable import Comparable
 
 
 def patience_sort[T: Comparable](array: list[T]) -> list[T]:

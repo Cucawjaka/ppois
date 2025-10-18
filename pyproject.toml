@@ -12,7 +12,10 @@ dependencies = [
 
 [tool.pytest.ini_options]
 testpaths = ["lab1/task1/tests",
-             "lab1/task2/tests"]
+             "lab1/task2/tests",
+             "lab4/task1/tests",
+             "lab4/task2/tests"]
 pythonpath = ["lab1/task1",
-              "lab1/task2"]
+              "lab1/task2",
+              "lab4"]
 

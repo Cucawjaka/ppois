@@ -1,5 +1,5 @@
 from task1.bubble_sort import bubble_sort
-from task1.tests.user_class import UserClass
+from task1.tests.UserClass import UserClass
 
 
 def test_bubble_sort_with_int(nums: list[int], sorted_nums: list[int]) -> None:

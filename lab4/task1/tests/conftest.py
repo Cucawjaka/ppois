@@ -1,6 +1,6 @@
 import pytest
 
-from task1.tests.user_class import UserClass
+from task1.tests.UserClass import UserClass
 
 
 @pytest.fixture(scope="session")

@@ -1,4 +1,4 @@
-from task1.comparable import Comparable
+from task1.Comparable import Comparable
 
 
 def bubble_sort[T: Comparable](array: list[T]) -> None:
