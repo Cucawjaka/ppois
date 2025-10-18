@@ -19,4 +19,4 @@ testpaths = ["lab1/task1/tests",
 pythonpath = ["lab1/task1",
               "lab1/task2",
               "lab2/",
-              "lab4/]
+              "lab4/"]
