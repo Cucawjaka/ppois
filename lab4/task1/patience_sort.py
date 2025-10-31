@@ -35,6 +35,3 @@ def patience_sort[T: Comparable](array: list[T]) -> list[T]:
             stacks.append([element])
 
     return _merge_elements(*stacks)
-
-
-patience_sort([5, 7, 4, 9, 3, 5])
