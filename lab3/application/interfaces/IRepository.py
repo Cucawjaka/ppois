@@ -1,0 +1,9 @@
+from typing import Protocol
+
+
+class IRepository[T](Protocol):
+    def create(self, item: T) -> None: ...
+
+    def read(self, key: str) -> T: ...
+
+    def delete(self, key: str) -> None: ...
